@@ -2,8 +2,11 @@ package com.vastrek.geelyhelper.middleware;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 
 import com.vastrek.geelyhelper.frame.BaseActivity;
+import com.vastrek.geelyhelper.frame.struct.ActValue;
+import com.vastrek.geelyhelper.ui.Page;
 
 /**
  * 
@@ -22,6 +25,20 @@ public class M {
 	
 	public static final <T extends BaseActivity> void gotoActivity(Activity fromActivity,Class<T> toActivity,Object value){
 		Intent intent = new Intent(fromActivity, toActivity);
+		fromActivity.startActivity(intent);
+	}
+	
+	public static final <T extends Page>void gotoPage(Activity fromActivity,Class<T> gotoPage){
+		gotoPage(fromActivity, gotoPage, null);
+	}
+	
+	public static final <T extends Page>void gotoPage(Activity fromActivity,Class<T> gotoPage,Object value){
+		
+		Intent intent = new Intent(fromActivity, BaseActivity.class);
+		ActValue actValue = new ActValue();
+		actValue.gotoPage = gotoPage;
+		actValue.value = value;
+		intent.putExtra("actvalue", actValue);
 		fromActivity.startActivity(intent);
 	}
 }

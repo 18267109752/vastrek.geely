@@ -1,12 +1,14 @@
 package com.vastrek.geelyhelper.frame;
 
-import com.vastrek.geelyhelper.R;
-import com.vastrek.geelyhelper.test.PlaceholderFragment;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
+
+import com.vastrek.geelyhelper.R;
+import com.vastrek.geelyhelper.frame.struct.ActValue;
+import com.vastrek.geelyhelper.test.PlaceholderFragment;
+import com.vastrek.geelyhelper.ui.Page;
 
 /**
  * 
@@ -15,15 +17,37 @@ import android.view.KeyEvent;
  */
 public class BaseActivity extends Activity{
 	
-
+	private ActValue mActValue;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
+		else{
+			mActValue = (ActValue) savedInstanceState.getSerializable("actvalue");
+			loadPage();
+		}
+	}
+	
+	private void loadPage(){
+		Class<? extends Page> pageClass = mActValue.gotoPage;
+		Page page = null;
+		try {
+			page = pageClass.newInstance();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		if(page == null){
+			//TODO
+			return ;
+		}
+		page.setPageData(mActValue.value);
 	}
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
