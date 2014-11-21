@@ -2,7 +2,7 @@ package com.vastrek.geelyhelper.frame.struct;
 
 import java.io.Serializable;
 
-import com.vastrek.geelyhelper.ui.Page;
+import com.vastrek.geelyhelper.frame.ui.Page;
 
 public final class ActValue implements Serializable{
 

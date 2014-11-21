@@ -1,38 +1,58 @@
 package com.vastrek.geelyhelper.frame;
 
-import android.app.Activity;
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.KeyEvent;
 
 import com.vastrek.geelyhelper.R;
 import com.vastrek.geelyhelper.frame.struct.ActValue;
-import com.vastrek.geelyhelper.test.PlaceholderFragment;
-import com.vastrek.geelyhelper.ui.Page;
+import com.vastrek.geelyhelper.frame.ui.Page;
+import com.vastrek.geelyhelper.page.LoginPage;
+import com.vastrek.geelyhelper.test.TestPage1;
 
 /**
  * 
  * @author zhaoheng
  * 所有Activity的基类
  */
-public class BaseActivity extends Activity{
+public class BaseActivity extends FragmentActivity{
 	
 	private ActValue mActValue;
+	private ActionBar mActionBar;
+	private Page mPage;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-
-		if (savedInstanceState == null) {
-			getFragmentManager().beginTransaction()
-					.add(R.id.container, new PlaceholderFragment()).commit();
+		setContentView(R.layout.root_layout);
+		mActionBar = getActionBar();
+		Intent intent = getIntent();
+		if(intent == null || intent.getSerializableExtra("actvalue") == null){
+			mActValue = new ActValue();
+			mActValue.gotoPage = LoginPage.class;
 		}
 		else{
-			mActValue = (ActValue) savedInstanceState.getSerializable("actvalue");
-			loadPage();
+			mActValue = (ActValue) intent.getSerializableExtra("actvalue");
 		}
+
+		loadPage(); 
+		initActionBar();
 	}
 	
+	public void hideActionBar(){
+		
+	}
+	
+	
+	private void initActionBar(){
+		mActionBar.setDisplayShowTitleEnabled(true);
+		mActionBar.setTitle(mPage.getTitle());
+
+	}
+	/**
+	 * 
+	 */
 	private void loadPage(){
 		Class<? extends Page> pageClass = mActValue.gotoPage;
 		Page page = null;
@@ -48,6 +68,11 @@ public class BaseActivity extends Activity{
 			return ;
 		}
 		page.setPageData(mActValue.value);
+		page.attachActivity(this);
+		setContentView(page.getRootView());
+		
+		mPage = page;
+
 	}
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -87,11 +112,13 @@ public class BaseActivity extends Activity{
 	@Override
 	protected void onStart() {
 		super.onStart();
+		mPage.onStart();
 	}
 
 	@Override
 	protected void onStop() {
 		super.onStop();
+		mPage.onStop();
 	}
 
 	

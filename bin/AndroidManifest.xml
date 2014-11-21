@@ -12,12 +12,18 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity
             android:name="com.vastrek.geelyhelper.frame.BaseActivity"
-            android:theme="@style/GLTheme"
             android:label="@string/app_name"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:theme="@style/GLTheme" >
+        </activity>
+        <activity
+            android:name="com.vastrek.geelyhelper.page.WelcomePage"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
