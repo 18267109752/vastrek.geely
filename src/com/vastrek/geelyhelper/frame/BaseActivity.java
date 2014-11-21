@@ -10,7 +10,6 @@ import com.vastrek.geelyhelper.R;
 import com.vastrek.geelyhelper.frame.struct.ActValue;
 import com.vastrek.geelyhelper.frame.ui.Page;
 import com.vastrek.geelyhelper.page.LoginPage;
-import com.vastrek.geelyhelper.test.TestPage1;
 
 /**
  * 

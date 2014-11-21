@@ -2,7 +2,6 @@ package com.vastrek.geelyhelper.middleware;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 
 import com.vastrek.geelyhelper.frame.BaseActivity;
 import com.vastrek.geelyhelper.frame.struct.ActValue;
