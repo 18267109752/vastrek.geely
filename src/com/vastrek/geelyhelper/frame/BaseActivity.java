@@ -8,6 +8,7 @@ import android.view.KeyEvent;
 
 import com.vastrek.geelyhelper.R;
 import com.vastrek.geelyhelper.frame.struct.ActValue;
+import com.vastrek.geelyhelper.frame.ui.CustomActionBar;
 import com.vastrek.geelyhelper.frame.ui.Page;
 import com.vastrek.geelyhelper.page.LoginPage;
 
@@ -19,13 +20,12 @@ import com.vastrek.geelyhelper.page.LoginPage;
 public class BaseActivity extends FragmentActivity{
 	
 	private ActValue mActValue;
-	private ActionBar mActionBar;
+	private CustomActionBar mCustomActionBar;
 	private Page mPage;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.root_layout);
-		mActionBar = getActionBar();
 		Intent intent = getIntent();
 		if(intent == null || intent.getSerializableExtra("actvalue") == null){
 			mActValue = new ActValue();
@@ -34,20 +34,25 @@ public class BaseActivity extends FragmentActivity{
 		else{
 			mActValue = (ActValue) intent.getSerializableExtra("actvalue");
 		}
-
-		loadPage(); 
 		initActionBar();
+		loadPage(); 
+
 	}
 	
 	public void hideActionBar(){
 		
 	}
 	
-	
 	private void initActionBar(){
-		mActionBar.setDisplayShowTitleEnabled(true);
-		mActionBar.setTitle(mPage.getTitle());
-
+		ActionBar actionBar = getActionBar();
+		actionBar.setDisplayShowCustomEnabled(true);
+		mCustomActionBar = (CustomActionBar) getLayoutInflater().inflate(R.layout.layout_actionbar, null);
+		actionBar.setCustomView(mCustomActionBar);
+		mCustomActionBar.bindActionBar(actionBar);
+	}
+	
+	public CustomActionBar getCustomActionBar(){
+		return mCustomActionBar;
 	}
 	/**
 	 * 
@@ -71,6 +76,7 @@ public class BaseActivity extends FragmentActivity{
 		setContentView(page.getRootView());
 		
 		mPage = page;
+		mCustomActionBar.setTitle(mPage.getTitle());
 
 	}
 	@Override

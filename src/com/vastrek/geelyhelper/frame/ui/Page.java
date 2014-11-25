@@ -5,6 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.lidroid.xutils.ViewUtils;
+import com.vastrek.geelyhelper.R;
+import com.vastrek.geelyhelper.content.ContentGetter;
+import com.vastrek.geelyhelper.content.ContentRulerFactory;
+import com.vastrek.geelyhelper.content.ContentRulers;
+import com.vastrek.geelyhelper.content.IContentRuler;
 import com.vastrek.geelyhelper.frame.BaseActivity;
 
 /**
@@ -22,8 +27,9 @@ public abstract class Page{
 
 	public void attachActivity(BaseActivity activity){
 		mActivity = activity;
-		initActionBar(activity.getActionBar());
+		initActionBar(activity.getCustomActionBar());
 		onCreateView(activity.getLayoutInflater());
+		
 	}
 	public void setPageData(Object value){
 		
@@ -43,7 +49,7 @@ public abstract class Page{
 		return mActivity;
 	}
 	public abstract String getTitle();
-	protected abstract void initActionBar(ActionBar actionBar);
+	protected abstract void initActionBar(CustomActionBar actionBar);
 	public abstract int getLayoutId();
 	
 	public abstract void onStart();

@@ -20,4 +20,6 @@
         <item>Accordion</item>
     </string-array>
 
+    
+    <string name="image_des_actionbar">actionbar</string>
 </resources>

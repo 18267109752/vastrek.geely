@@ -1,18 +1,18 @@
 package com.vastrek.geelyhelper.test;
 
-import android.app.ActionBar;
 import android.view.View;
 import android.widget.Button;
 
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.vastrek.geelyhelper.R;
+import com.vastrek.geelyhelper.frame.ui.CustomActionBar;
 import com.vastrek.geelyhelper.frame.ui.Page;
 import com.vastrek.geelyhelper.middleware.M;
 
 public class TestPage1 extends Page{
 
 
-	@ViewInject(R.id.search_view)
+	@ViewInject(R.id.login_btn)
 	private Button tv;
 	@Override
 	public String getTitle() {
@@ -21,7 +21,8 @@ public class TestPage1 extends Page{
 	}
 
 	@Override
-	protected void initActionBar(ActionBar actionBar) {
+	protected void initActionBar(CustomActionBar actionBar) {
+		actionBar.addSearchIcon();
 		// TODO Auto-generated method stub
 	}
 

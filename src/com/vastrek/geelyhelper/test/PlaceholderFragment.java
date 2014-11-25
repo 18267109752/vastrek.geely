@@ -17,7 +17,7 @@ import com.vastrek.geelyhelper.middleware.M;
 public class PlaceholderFragment extends Fragment implements
 		OnQueryTextListener {
 
-	@ViewInject(R.id.search_view)
+	@ViewInject(R.id.login_btn)
 	TextView searchView;
 
 	public PlaceholderFragment() {

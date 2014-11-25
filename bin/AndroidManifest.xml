@@ -8,6 +8,9 @@
         android:minSdkVersion="18"
         android:targetSdkVersion="19" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -15,6 +18,12 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.vastrek.geelyhelper.frame.BaseActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:theme="@style/GLTheme" >
+        </activity>
+                <activity
+            android:name="com.facebook.rebound.test.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="landscape"
             android:theme="@style/GLTheme" >

@@ -1,9 +1,5 @@
 package com.vastrek.geelyhelper.test;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import android.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -12,6 +8,7 @@ import android.widget.LinearLayout;
 
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.vastrek.geelyhelper.R;
+import com.vastrek.geelyhelper.frame.ui.CustomActionBar;
 import com.vastrek.geelyhelper.frame.ui.JazzyViewPager;
 import com.vastrek.geelyhelper.frame.ui.JazzyViewPager.TransitionEffect;
 import com.vastrek.geelyhelper.frame.ui.Page;
@@ -30,7 +27,7 @@ public class TestPage2 extends Page{
 	}
 
 	@Override
-	protected void initActionBar(ActionBar actionBar) {
+	protected void initActionBar(CustomActionBar actionBar) {
 	}
 
 	@Override
