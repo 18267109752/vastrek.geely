@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.vastrek.geelyhelper.frame.ui.CustomActionBar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:orientation="horizontal" >
+
+    <ImageView
+        android:id="@+id/actionbar_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/image_des_actionbar"
+        android:src="@drawable/ic_industry_fa_l" />
+
+    <ImageView
+        android:id="@+id/actionbar_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/image_des_actionbar"
+        android:src="@drawable/ic_launcher" />
+
+    <TextView
+        android:id="@+id/actionbar_title"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:id="@+id/actionbar_mid_wrapper"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/actionbar_right_wrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+    </LinearLayout>
+
+</com.vastrek.geelyhelper.frame.ui.CustomActionBar>
