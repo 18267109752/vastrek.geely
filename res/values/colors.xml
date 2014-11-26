@@ -3,4 +3,8 @@
 
     <color name="holo_blue">#FF33E5B5</color>
 	<color name="background_tab_pressed">#6633B5E5</color>
+	
+	<color name="main_back">#66888888</color>
+	
+	<color name="gray2">#66888888</color>
 </resources>

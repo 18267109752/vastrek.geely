@@ -35,5 +35,9 @@
         <attr name="showDivider" format="boolean" />
         <attr name="textAllCaps" format="boolean" />
     </declare-styleable>
+    
+    <declare-styleable name="RoundedView">
+        <attr name="rounded_radius" format="dimension" />
+    </declare-styleable>
 
 </resources>

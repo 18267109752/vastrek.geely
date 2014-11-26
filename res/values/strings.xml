@@ -22,4 +22,6 @@
 
     
     <string name="image_des_actionbar">actionbar</string>
+    
+   	<string name="login_title">关爱在细微处</string>
 </resources>

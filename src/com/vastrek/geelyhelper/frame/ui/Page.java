@@ -7,15 +7,16 @@ import android.view.View;
 import com.lidroid.xutils.ViewUtils;
 import com.vastrek.geelyhelper.R;
 import com.vastrek.geelyhelper.content.ContentGetter;
-import com.vastrek.geelyhelper.content.ContentRulerFactory;
-import com.vastrek.geelyhelper.content.ContentRulers;
-import com.vastrek.geelyhelper.content.IContentRuler;
+import com.vastrek.geelyhelper.content.ruler.ContentRulerFactory;
+import com.vastrek.geelyhelper.content.ruler.ContentRulers;
+import com.vastrek.geelyhelper.content.ruler.IContentRuler;
 import com.vastrek.geelyhelper.frame.BaseActivity;
 
 /**
  * 
  * @author zhaoheng
  *
+ * Ò»¸öÒ³Ãæ
  */
 public abstract class Page{
 

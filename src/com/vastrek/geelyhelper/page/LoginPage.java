@@ -1,33 +1,46 @@
 package com.vastrek.geelyhelper.page;
 
-import android.animation.Animator;
-import android.animation.AnimatorInflater;
-import android.animation.PropertyValuesHolder;
-import android.animation.ValueAnimator;
-import android.animation.Animator.AnimatorListener;
 import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator.AnimatorUpdateListener;
 import android.content.Intent;
-import android.test.suitebuilder.annotation.MediumTest;
 import android.view.View;
+import android.view.ViewTreeObserver.OnDrawListener;
 import android.widget.Button;
 
 import com.facebook.rebound.test.MainActivity;
+import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.vastrek.geelyhelper.R;
 import com.vastrek.geelyhelper.content.ContentGetter;
+import com.vastrek.geelyhelper.content.ContentSetter;
+import com.vastrek.geelyhelper.content.ruler.ContentRulerFactory;
+import com.vastrek.geelyhelper.content.ruler.ContentSetterRuler;
+import com.vastrek.geelyhelper.content.ruler.IContentRuler;
 import com.vastrek.geelyhelper.frame.ui.CustomActionBar;
 import com.vastrek.geelyhelper.frame.ui.Page;
-import com.vastrek.geelyhelper.test.TestModel;
+import com.vastrek.geelyhelper.middleware.M;
+import com.vastrek.geelyhelper.test.TestPage1;
+import com.vastrek.geelyhelper.test.model.TestModel;
+import com.vastrek.geelyhelper.ui.MainPageButton;
+import com.vastrek.geelyhelper.ui.MainPageButton.ButtonStruct;
 
+/**
+ * 
+ * @author zhaoheng
+ *
+ */
 public class LoginPage extends Page{
 
 	@ViewInject(R.id.login_btn)
 	View view;
 	
+	@ViewInject(R.id.login_username)
+	View username;
+	@ViewInject(R.id.login_pwd)
+	View pwd;
 	@ViewInject(R.id.login_rotate)
 	Button rotateButton;
+
 	@Override
 	public String getTitle() {
 		return null;
@@ -45,14 +58,43 @@ public class LoginPage extends Page{
 
 	@Override
 	public void onStart() {
+
+		TestModel model = new TestModel();
+		model.name = "123";
+		model.pwd = "45456";
+		model.pwd1="pw1";
+		model.pwd2="pw2";
+		model.pwd3="pw3";
+		ContentSetter setter = new ContentSetter();
+		setter.addDataRuler(R.id.login_pwd1, new ContentSetterRuler<String, String>() {
+
+			@Override
+			public String transToShow(String value) {
+				return "TestSetterRuler";
+			}
+		});
+		
+		setter.setContent(mRootView, model, 0);
 		view.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				ContentGetter<TestModel> getter = new ContentGetter<>(TestModel.class, 0);
-				TestModel mo = getter.getFromIdArray(mRootView, R.id.login_username,R.id.login_pwd);
-				Intent intent = new Intent(mActivity, MainActivity.class);
-				mActivity.startActivity(intent);
+				getter.addDataRuler(R.id.login_username, ContentRulerFactory.getTestRuler());
+				TestModel mo = getter.getFromArea(mRootView);
+				
+				
+//				Intent intent = new Intent(mActivity, MainActivity.class);
+//				mActivity.startActivity(intent);
+				M.gotoPage(getActivity(), MainPage.class);
+			}
+		});
+		
+		
+		view.getViewTreeObserver().addOnDrawListener(new OnDrawListener() {
+			
+			@Override
+			public void onDraw() {
 			}
 		});
 		
@@ -104,7 +146,7 @@ public class LoginPage extends Page{
 	@OnClick(R.id.login_rotate)
 	public void rotateButton(final View view){
 		ViewWrapper wrapper = new ViewWrapper(view);
-	    ObjectAnimator.ofFloat(view, "height", 1.0f,0.5f).setDuration(1000).start();
+	    ObjectAnimator.ofFloat(view, "alpha", 1.0f,0.5f).setDuration(1000).start();
 		
 	}
 
